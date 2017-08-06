@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://lucien-x.github.io/2017/08/06/JS哈希算法/index.html">
 <meta property="og:site_name" content="Lucien-X的个人博客">
 <meta property="og:description" content="问题背景　　公司旗下的自有产品桔梗导航，日均20万IP(数据来源CNZZ,截止20170801)。其下方信息流部分，本来走的是东方头条的资讯接口，东方头条按链接的GET带参统计来源，进行计费。为提高变现能力，现在要接入第三方广告。经业务人员业务洽谈，拉来了360的信息流插流广告。拉完讨论组之后，对接人员发来了对接文档。 　　大体的方式还是取JSON数据，在信息流渲染时，插流推广。与之前的东方头条不">
-<meta property="og:updated_time" content="2017-08-06T18:21:36.000Z">
+<meta property="og:updated_time" content="2017-08-06T18:25:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS哈希算法">
 <meta name="twitter:description" content="问题背景　　公司旗下的自有产品桔梗导航，日均20万IP(数据来源CNZZ,截止20170801)。其下方信息流部分，本来走的是东方头条的资讯接口，东方头条按链接的GET带参统计来源，进行计费。为提高变现能力，现在要接入第三方广告。经业务人员业务洽谈，拉来了360的信息流插流广告。拉完讨论组之后，对接人员发来了对接文档。 　　大体的方式还是取JSON数据，在信息流渲染时，插流推广。与之前的东方头条不">
@@ -190,7 +190,7 @@
 <p>​    这个方案碰撞率较低，而且使用了位运算符，性能较高。满足前面的两点要求。</p>
 <p>综上所述，我们最终的代码snippet如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hash</span>(<span class="params">text</span>) </span>&#123;</div><div class="line">  	<span class="comment">// 启用严格模式，防止JS解释器异常</span></div><div class="line"><span class="meta">    'use strict'</span>;</div><div class="line">  	</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> text === <span class="string">'number'</span>)&#123;</div><div class="line">      <span class="comment">// 假如输入是数字，转换为字符串</span></div><div class="line">      text = <span class="built_in">String</span>(text);</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">typeof</span> text !== <span class="string">'string'</span>)&#123;</div><div class="line">      <span class="comment">// 假如输入不是数字也不是字符串，</span></div><div class="line">      <span class="comment">// 由于没有使用try-catch语句，</span></div><div class="line">      <span class="comment">// throw抛出的异常会终止运算，并在控制台显示Uncaught Error</span></div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'数据类型错误,请传入数字或字符串'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> hash = <span class="number">5381</span>,<span class="comment">// 给出哈希种子</span></div><div class="line">        index = text.length;<span class="comment">// 字符串长度作为索引</span></div><div class="line">  </div><div class="line">    <span class="keyword">while</span> (index) &#123;</div><div class="line">      	<span class="comment">//按索引倒序取Unicode,与种子的33倍进行按位异或比较，</span></div><div class="line">        <span class="comment">//比较结果当做下一次的种子</span></div><div class="line">        hash = (hash * <span class="number">33</span>) ^ text.charCodeAt(--index);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 无符号右移0位,保证结果为非负整数</span></div><div class="line">    <span class="keyword">return</span> hash &gt;&gt;&gt; <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> uid=Hash(<span class="built_in">document</span>.cookie+<span class="built_in">document</span>.domain);</div></pre></td></tr></table></figure>
-<p>有关无符号右移，在StackOverflow上看到如下回答：</p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>有关无符号右移，在StackOverflow上看到如下回答：</p>
 <blockquote>
 <p><code>x &gt;&gt;&gt; 0</code> performs a logical (unsigned) right-shift of 0 bits, which is equivalent to a no-op. However, before the right shift, it must convert the <code>x</code> to an unsigned 32-bit integer. Therefore, the overall effect of <code>x &gt;&gt;&gt; 0</code> is convert <code>x</code> into a 32-bit unsigned integer.</p>
 <p>This ensures <code>x</code> is a nonnegative number.</p>
@@ -203,10 +203,8 @@
 <p>对于位运算，JS仅支持32位整数，其中1位符号位，31位数字位。这意味着，</p>
 <ul>
 <li>32bit最大正整数：Math.pow(2, 31) - 1 = 2147483647</li>
-<li><p>32bit最小负整数：Math.pow(2, 31) = -2147483648</p>
-</li>
-<li><p>32bit最大无符号整数：Math.pow(2, 32) - 1= 4294967295</p>
-</li>
+<li>32bit最小负整数：Math.pow(2, 31) = -2147483648</li>
+<li>32bit最大无符号整数：Math.pow(2, 32) - 1= 4294967295</li>
 </ul>
 <p>以上哈希算法的结果就是把任意长度的任意字符串映射到了0到4294967295这一段区间内。</p>
 
