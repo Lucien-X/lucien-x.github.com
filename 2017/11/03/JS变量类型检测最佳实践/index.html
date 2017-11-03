@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lucien-x.github.io">
-  <title>Tag: 心绪 | Lucien-X的个人博客</title>
+  <title>JS变量类型检测最佳实践 | Lucien-X的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这里是Lucien-X的个人博客，涉及前端技术和一些闲聊，欢迎您有事没事上来嘚啵。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lucien-X的个人博客">
-<meta property="og:url" content="https://lucien-x.github.io/tags/心绪/index.html">
+  <meta name="description" content="JavaScript是一门弱类型语言。  　　但是弱类型不代表没有类型，JS中的变量可以分为原始类型和引用类型两大类。　　有5种原始类型，字符串、数字、布尔值、null和undefined。　　5种原始类型以外的都是引用值，例如Object、Date、Array、Error等。　　这里就简单总结下 JS变量类型检测最佳实践。(参考自《编写可维护的JavaScript》)">
+<meta name="keywords" content="JavaScript,类型检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS变量类型检测最佳实践">
+<meta property="og:url" content="https://lucien-x.github.io/2017/11/03/JS变量类型检测最佳实践/index.html">
 <meta property="og:site_name" content="Lucien-X的个人博客">
-<meta property="og:description" content="这里是Lucien-X的个人博客，涉及前端技术和一些闲聊，欢迎您有事没事上来嘚啵。">
+<meta property="og:description" content="JavaScript是一门弱类型语言。  　　但是弱类型不代表没有类型，JS中的变量可以分为原始类型和引用类型两大类。　　有5种原始类型，字符串、数字、布尔值、null和undefined。　　5种原始类型以外的都是引用值，例如Object、Date、Array、Error等。　　这里就简单总结下 JS变量类型检测最佳实践。(参考自《编写可维护的JavaScript》)">
+<meta property="og:updated_time" content="2017-11-03T10:00:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lucien-X的个人博客">
-<meta name="twitter:description" content="这里是Lucien-X的个人博客，涉及前端技术和一些闲聊，欢迎您有事没事上来嘚啵。">
+<meta name="twitter:title" content="JS变量类型检测最佳实践">
+<meta name="twitter:description" content="JavaScript是一门弱类型语言。  　　但是弱类型不代表没有类型，JS中的变量可以分为原始类型和引用类型两大类。　　有5种原始类型，字符串、数字、布尔值、null和undefined。　　5种原始类型以外的都是引用值，例如Object、Date、Array、Error等。　　这里就简单总结下 JS变量类型检测最佳实践。(参考自《编写可维护的JavaScript》)">
   
     <link rel="alternative" href="/atom.xml" title="Lucien-X的个人博客" type="application/atom+xml">
   
@@ -146,98 +148,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JS变量类型检测最佳实践" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/01/前端开发一年有感/" class="archive-article-date">
-  	<time datetime="2017-08-01T15:24:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/01/前端开发一年有感/">前端开发一年有感</a>
+    <h1 class="article-title" itemprop="name">
+      JS变量类型检测最佳实践
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/11/03/JS变量类型检测最佳实践/" class="archive-article-date">
+  	<time datetime="2017-11-03T09:25:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>　　JavaScript是一门弱类型语言。</p>
+</blockquote>
+<p>　　但是弱类型不代表没有类型，JS中的变量可以分为原始类型和引用类型两大类。<br>　　有5种原始类型，字符串、数字、布尔值、null和undefined。<br>　　5种原始类型以外的都是引用值，例如Object、Date、Array、Error等。<br>　　这里就简单总结下 JS变量类型检测最佳实践。(参考自《编写可维护的JavaScript》)<br><a id="more"></a></p>
+<h2 id="检测原始值"><a href="#检测原始值" class="headerlink" title="检测原始值"></a>检测原始值</h2><p>　　使用typeof运算符，检测除null外的四种类型，都十分安全高效，即使将其用于一个未声明的对象也不会报错。</p>
+<p>　　注意：不要使用typeof判断null，因为返回的是’object’。如果一定要判断，请使用恒等运算符(===)或者非恒等运算符(!==)。使用场景目前我只遇到两个，都是在null为可预期的结果时：</p>
+<ol>
+<li>预期赋值为对象的变量，null通常作为其“占位符”</li>
+<li>使用document.getElementById()等DOM选择API时，选择集为空时，返回为null</li>
+</ol>
+<h2 id="检测引用值"><a href="#检测引用值" class="headerlink" title="检测引用值"></a>检测引用值</h2><p>　　检测引用值的最好做法是使用instanceof运算符，但是这个运算符不仅会检查构造器，还会向上查找原型链。由于每个对象都被认为是Object的实例，因此引用类型 instanceof Object 都返回true</p>
+<p>　　注意：在JS中检测自定义类型时，唯一的方法就是instanceof。</p>
+<p>　　感谢Kangax,提出了一种非常优雅的类型检测方法，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call(variable)</div></pre></td></tr></table></figure>
+<p>　　这种方法在所有浏览器下，都会返回类似’[object Array]’这种格式的标准字符串结果</p>
+<p>　　综上所述，一个健壮的类型检测函数如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">is</span>(<span class="params">expectedType, variable</span>) </span>&#123;</div><div class="line">    <span class="comment">/* 异常捕获 */</span></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> expectedType !== <span class="string">'string'</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'类型名称应为字符串'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/* 取得类型元数据 */</span></div><div class="line">    <span class="keyword">var</span> variableType = <span class="built_in">Object</span>.prototype.toString.call(variable);</div><div class="line"></div><div class="line">    <span class="comment">/* 查找以']'结尾的整词，将元数据转化为短字符串，具体有两种方法 */</span></div><div class="line">  </div><div class="line">    <span class="comment">// 1、正则表达式法，具体释义参照以下网址</span></div><div class="line">    <span class="comment">// https://regexper.com/#%2F%5Cb%5BA-z%5D%2B%5Cb(%3F%3D%5C%5D)%2Fg</span></div><div class="line">    variableType = variableType.match(<span class="regexp">/\b[A-z]+\b(?=\])/g</span>)[<span class="number">0</span>];</div><div class="line">    <span class="comment">// 2、字符串拆分法比较蠢，但是也在这里写下</span></div><div class="line">    <span class="comment">// variableType = variableType.split(' ').pop().split(']').shift();</span></div><div class="line"></div><div class="line">    <span class="comment">// 比较转为小写的类型字符串是否全等</span></div><div class="line">    <span class="keyword">return</span> expectedType.toLowerCase() === variableType.toLowerCase();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="检测属性"><a href="#检测属性" class="headerlink" title="检测属性"></a>检测属性</h2><p>　　检测属性是否存在，应该使用in运算符，而不是使用假值检测。否则一旦属性值为0、空字符串、false、null、undefined等假值，会导致检测出错。比如属性记录了一个数字，这个数字恰好为0，那么if语句和三元表达式中的object[propertyName]会返回false，然而属性是存在的。</p>
+<p>　　检测实例上的属性，用hasOwnProperty()方法，如果这个属性存在于原型上，则返回false。需要注意的是，所有继承自Object的对象都有这个方法，但IE8及更早版本IE中，DOM对象并非继承自Object，不包含这个方法。如果硬要判断的话，需要先用in语句判断下。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡☕️<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpeg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpeg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心绪</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/07/我的第一篇HEXO博文/" class="archive-article-date">
-  	<time datetime="2017-06-06T16:43:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/07/我的第一篇HEXO博文/">我的第一篇HEXO博文</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心绪</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">类型检测</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://lucien-x.github.io/2017/11/03/JS变量类型检测最佳实践/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/10/23/原生JS实现JSONP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">原生JS实现JSONP</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -260,9 +346,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
