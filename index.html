@@ -168,10 +168,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>　　JavaScript是一门弱类型语言。</p>
-</blockquote>
-<p>　　但是弱类型不代表没有类型，JS中的变量可以分为原始类型和引用类型两大类。<br>　　有5种原始类型，字符串、数字、布尔值、null和undefined。<br>　　5种原始类型以外的都是引用值，例如Object、Date、Array、Error等。<br>　　这里就简单总结下 JS变量类型检测最佳实践。(参考自《编写可维护的JavaScript》)<br></p>
+        <p>　　JavaScript最初的目的，只是为网页浏览增加基本交互和表单验证。现在拿它来干工程化，来干富应用，就容易出各种幺蛾子。(Brendan Eich花10天就捣鼓出来的语言，他都没指望什么，你还能指望什么。。。)</p>
+<p>　　JavaScript是一门弱类型语言。弱类型，只是有类型检测不严格，容忍隐式类型转换等特性，不代表没有类型。在模块化编程时，函数只接受输入输出，类型检测就变得尤为重要。</p>
+<p>　　为了避免JavaScript本身的问题，开发者甚至搞出了TypeScript这个带静态类型检查的语言。至于JavaScript有多烂，下面给你张图，你自己体会。（笑）</p>
+<p><img src="/2017/11/03/JS变量类型检测最佳实践/JavaScript冷笑话.jpg" alt="JavaScript冷笑话"></p>
+<p>　　这里就简单总结下， JS变量类型检测的最佳实践。(参考自《编写可维护的JavaScript》)</p>
         
           <a class="article-more-a" href="/2017/11/03/JS变量类型检测最佳实践/#more">more >></a>
         
@@ -783,15 +784,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">备忘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">备忘</a>
               </li>
              
               <li class="article-tag-list-item">

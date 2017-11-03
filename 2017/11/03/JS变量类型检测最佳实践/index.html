@@ -8,17 +8,19 @@
   <link rel="dns-prefetch" href="https://lucien-x.github.io">
   <title>JS变量类型检测最佳实践 | Lucien-X的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JavaScript是一门弱类型语言。  　　但是弱类型不代表没有类型，JS中的变量可以分为原始类型和引用类型两大类。　　有5种原始类型，字符串、数字、布尔值、null和undefined。　　5种原始类型以外的都是引用值，例如Object、Date、Array、Error等。　　这里就简单总结下 JS变量类型检测最佳实践。(参考自《编写可维护的JavaScript》)">
+  <meta name="description" content="JavaScript最初的目的，只是为网页浏览增加基本交互和表单验证。现在拿它来干工程化，来干富应用，就容易出各种幺蛾子。(Brendan Eich花10天就捣鼓出来的语言，他都没指望什么，你还能指望什么。。。) 　　JavaScript是一门弱类型语言。弱类型，只是有类型检测不严格，容忍隐式类型转换等特性，不代表没有类型。在模块化编程时，函数只接受输入输出，类型检测就变得尤为重要。 　　为了">
 <meta name="keywords" content="JavaScript,类型检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS变量类型检测最佳实践">
 <meta property="og:url" content="https://lucien-x.github.io/2017/11/03/JS变量类型检测最佳实践/index.html">
 <meta property="og:site_name" content="Lucien-X的个人博客">
-<meta property="og:description" content="JavaScript是一门弱类型语言。  　　但是弱类型不代表没有类型，JS中的变量可以分为原始类型和引用类型两大类。　　有5种原始类型，字符串、数字、布尔值、null和undefined。　　5种原始类型以外的都是引用值，例如Object、Date、Array、Error等。　　这里就简单总结下 JS变量类型检测最佳实践。(参考自《编写可维护的JavaScript》)">
-<meta property="og:updated_time" content="2017-11-03T10:00:38.000Z">
+<meta property="og:description" content="JavaScript最初的目的，只是为网页浏览增加基本交互和表单验证。现在拿它来干工程化，来干富应用，就容易出各种幺蛾子。(Brendan Eich花10天就捣鼓出来的语言，他都没指望什么，你还能指望什么。。。) 　　JavaScript是一门弱类型语言。弱类型，只是有类型检测不严格，容忍隐式类型转换等特性，不代表没有类型。在模块化编程时，函数只接受输入输出，类型检测就变得尤为重要。 　　为了">
+<meta property="og:image" content="https://lucien-x.github.io/2017/11/03/JS变量类型检测最佳实践/JavaScript冷笑话.jpg">
+<meta property="og:updated_time" content="2017-11-03T12:14:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS变量类型检测最佳实践">
-<meta name="twitter:description" content="JavaScript是一门弱类型语言。  　　但是弱类型不代表没有类型，JS中的变量可以分为原始类型和引用类型两大类。　　有5种原始类型，字符串、数字、布尔值、null和undefined。　　5种原始类型以外的都是引用值，例如Object、Date、Array、Error等。　　这里就简单总结下 JS变量类型检测最佳实践。(参考自《编写可维护的JavaScript》)">
+<meta name="twitter:description" content="JavaScript最初的目的，只是为网页浏览增加基本交互和表单验证。现在拿它来干工程化，来干富应用，就容易出各种幺蛾子。(Brendan Eich花10天就捣鼓出来的语言，他都没指望什么，你还能指望什么。。。) 　　JavaScript是一门弱类型语言。弱类型，只是有类型检测不严格，容忍隐式类型转换等特性，不代表没有类型。在模块化编程时，函数只接受输入输出，类型检测就变得尤为重要。 　　为了">
+<meta name="twitter:image" content="https://lucien-x.github.io/2017/11/03/JS变量类型检测最佳实践/JavaScript冷笑话.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Lucien-X的个人博客" type="application/atom+xml">
   
@@ -168,25 +170,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>　　JavaScript是一门弱类型语言。</p>
+        <p>　　JavaScript最初的目的，只是为网页浏览增加基本交互和表单验证。现在拿它来干工程化，来干富应用，就容易出各种幺蛾子。(Brendan Eich花10天就捣鼓出来的语言，他都没指望什么，你还能指望什么。。。)</p>
+<p>　　JavaScript是一门弱类型语言。弱类型，只是有类型检测不严格，容忍隐式类型转换等特性，不代表没有类型。在模块化编程时，函数只接受输入输出，类型检测就变得尤为重要。</p>
+<p>　　为了避免JavaScript本身的问题，开发者甚至搞出了TypeScript这个带静态类型检查的语言。至于JavaScript有多烂，下面给你张图，你自己体会。（笑）</p>
+<p><img src="/2017/11/03/JS变量类型检测最佳实践/JavaScript冷笑话.jpg" alt="JavaScript冷笑话"></p>
+<p>　　这里就简单总结下， JS变量类型检测的最佳实践。(参考自《编写可维护的JavaScript》)</p>
+<a id="more"></a>
+<p>先说结论：</p>
+<blockquote>
+<p><strong>如果你要判断的是原始类型或JavaScript内置对象，使用Object.prototype.toString.call(variable)； </strong></p>
+<p><strong>如果要判断的是自定义类型，请使用instanceof</strong>。</p>
 </blockquote>
-<p>　　但是弱类型不代表没有类型，JS中的变量可以分为原始类型和引用类型两大类。<br>　　有5种原始类型，字符串、数字、布尔值、null和undefined。<br>　　5种原始类型以外的都是引用值，例如Object、Date、Array、Error等。<br>　　这里就简单总结下 JS变量类型检测最佳实践。(参考自《编写可维护的JavaScript》)<br><a id="more"></a></p>
-<h2 id="检测原始值"><a href="#检测原始值" class="headerlink" title="检测原始值"></a>检测原始值</h2><p>　　使用typeof运算符，检测除null外的四种类型，都十分安全高效，即使将其用于一个未声明的对象也不会报错。</p>
+<h2 id="类型检测分类"><a href="#类型检测分类" class="headerlink" title="类型检测分类"></a>类型检测分类</h2><p>JS中的变量，按照存储的是值还是引用，可以分为两大类：</p>
+<ul>
+<li>原始类型：字符串、数字、布尔值、null、undefined</li>
+<li>引用类型：原始类型以外的所有类型，例如Object、Array、Date、Error、Function等</li>
+</ul>
+<h2 id="类型检测方法"><a href="#类型检测方法" class="headerlink" title="类型检测方法"></a>类型检测方法</h2><h3 id="检测原始值"><a href="#检测原始值" class="headerlink" title="检测原始值"></a>检测原始值</h3><p>　　使用typeof运算符，检测除null外的四种类型，都十分安全高效，即使将其用于一个未声明的对象也不会报错。</p>
 <p>　　注意：不要使用typeof判断null，因为返回的是’object’。如果一定要判断，请使用恒等运算符(===)或者非恒等运算符(!==)。使用场景目前我只遇到两个，都是在null为可预期的结果时：</p>
 <ol>
-<li>预期赋值为对象的变量，null通常作为其“占位符”</li>
-<li>使用document.getElementById()等DOM选择API时，选择集为空时，返回为null</li>
+<li>预期赋值为对象的变量，null通常作为其“占位符”。</li>
+<li>使用document.getElementById()等DOM选择API时，选择集为空时，返回为null。</li>
 </ol>
-<h2 id="检测引用值"><a href="#检测引用值" class="headerlink" title="检测引用值"></a>检测引用值</h2><p>　　检测引用值的最好做法是使用instanceof运算符，但是这个运算符不仅会检查构造器，还会向上查找原型链。由于每个对象都被认为是Object的实例，因此引用类型 instanceof Object 都返回true</p>
-<p>　　注意：在JS中检测自定义类型时，唯一的方法就是instanceof。</p>
-<p>　　感谢Kangax,提出了一种非常优雅的类型检测方法，</p>
+<h3 id="检测引用值"><a href="#检测引用值" class="headerlink" title="检测引用值"></a>检测引用值</h3><p>　　检测引用值的最好做法是使用instanceof运算符，但是这个运算符不仅会检查构造器(constructor)，还会向上查找原型链(prototype)。由于每个对象都被认为是Object的实例，因此引用类型的 instanceof Object 都返回true，这一点也算是该方法的一个短板，后面的通用方法可以解决这个问题。</p>
+<p>　　注意：在JS中检测自定义类型时，唯一的方法，就是instanceof。</p>
+<h3 id="检测属性是否存在"><a href="#检测属性是否存在" class="headerlink" title="检测属性是否存在"></a>检测属性是否存在</h3><p>　　检测属性是否存在，应该使用in运算符，而不是使用假值检测。否则一旦属性值为0、空字符串、false、null、undefined等假值，会导致检测出错。比如属性记录了一个数字，这个数字恰好为0，那么在if语句和三元表达式以及其他形式的强制转换布尔值的方法中，object[propertyName]会返回false，然而属性是存在的。</p>
+<p>　　检测实例上的属性，用hasOwnProperty()方法，如果这个属性存在于原型上，则返回false。</p>
+<p>　　注意：所有继承自Object的对象都有这个方法，但IE8及更早版本IE中，DOM对象并非继承自Object，不包含这个方法。如果硬要判断的话，需要先用in语句判断下。</p>
+<h2 id="通用检测方法"><a href="#通用检测方法" class="headerlink" title="通用检测方法"></a>通用检测方法</h2><p>　　感谢Kangax,提出了一种非常优雅的类型检测方法，</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call(variable)</div></pre></td></tr></table></figure>
-<p>　　这种方法在所有浏览器下，都会返回类似’[object Array]’这种格式的标准字符串结果</p>
+<p>　　这种方法在所有浏览器下，都会返回统一格式的标准字符串结果，以下是测试代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">diyClass</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> variables = [<span class="string">'string'</span>,<span class="number">100</span>,<span class="literal">true</span>,<span class="literal">null</span>,,&#123;&#125;,[],<span class="built_in">JSON</span>,<span class="keyword">new</span> <span class="built_in">Date</span>(),<span class="keyword">new</span> <span class="built_in">Error</span>(),diyClass,<span class="keyword">new</span> diyClass()];</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;variables.length;i++)&#123;</div><div class="line">    <span class="keyword">var</span> typeNameString = <span class="built_in">Object</span>.prototype.toString.call(variables[i]);</div><div class="line">    <span class="built_in">console</span>.log(typeNameString);</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 控制台输出：</span></div><div class="line">[object String]</div><div class="line">[object Number]</div><div class="line">[object Boolean]</div><div class="line">[object Null]</div><div class="line">[object Undefined]</div><div class="line">[object Object]</div><div class="line">[object Array]</div><div class="line">[object JSON]</div><div class="line">[object Date]</div><div class="line">[object Error]</div><div class="line">[object Function]</div><div class="line">[object Object]   // 这就是为什么判断自定义类型需要使用instanceof</div><div class="line">*/</div></pre></td></tr></table></figure>
 <p>　　综上所述，一个健壮的类型检测函数如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">is</span>(<span class="params">expectedType, variable</span>) </span>&#123;</div><div class="line">    <span class="comment">/* 异常捕获 */</span></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> expectedType !== <span class="string">'string'</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'类型名称应为字符串'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/* 取得类型元数据 */</span></div><div class="line">    <span class="keyword">var</span> variableType = <span class="built_in">Object</span>.prototype.toString.call(variable);</div><div class="line"></div><div class="line">    <span class="comment">/* 查找以']'结尾的整词，将元数据转化为短字符串，具体有两种方法 */</span></div><div class="line">  </div><div class="line">    <span class="comment">// 1、正则表达式法，具体释义参照以下网址</span></div><div class="line">    <span class="comment">// https://regexper.com/#%2F%5Cb%5BA-z%5D%2B%5Cb(%3F%3D%5C%5D)%2Fg</span></div><div class="line">    variableType = variableType.match(<span class="regexp">/\b[A-z]+\b(?=\])/g</span>)[<span class="number">0</span>];</div><div class="line">    <span class="comment">// 2、字符串拆分法比较蠢，但是也在这里写下</span></div><div class="line">    <span class="comment">// variableType = variableType.split(' ').pop().split(']').shift();</span></div><div class="line"></div><div class="line">    <span class="comment">// 比较转为小写的类型字符串是否全等</span></div><div class="line">    <span class="keyword">return</span> expectedType.toLowerCase() === variableType.toLowerCase();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="检测属性"><a href="#检测属性" class="headerlink" title="检测属性"></a>检测属性</h2><p>　　检测属性是否存在，应该使用in运算符，而不是使用假值检测。否则一旦属性值为0、空字符串、false、null、undefined等假值，会导致检测出错。比如属性记录了一个数字，这个数字恰好为0，那么if语句和三元表达式中的object[propertyName]会返回false，然而属性是存在的。</p>
-<p>　　检测实例上的属性，用hasOwnProperty()方法，如果这个属性存在于原型上，则返回false。需要注意的是，所有继承自Object的对象都有这个方法，但IE8及更早版本IE中，DOM对象并非继承自Object，不包含这个方法。如果硬要判断的话，需要先用in语句判断下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 用于检查变量类型的函数</div><div class="line"> * @param  &#123;String&#125;     expectedType 期望的类型</div><div class="line"> * @param  &#123;???&#125;        variable     待检测变量</div><div class="line"> * @return &#123;Boolean&#125;                 检测结果，符合为true</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">is</span>(<span class="params">expectedType, variable</span>) </span>&#123;</div><div class="line">    <span class="comment">/* 异常捕获 */</span></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> expectedType !== <span class="string">'string'</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(&#123;<span class="attr">message</span>:<span class="string">'类型名称应为字符串'</span>&#125;);</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    <span class="comment">/* 取得类型元数据 */</span></div><div class="line">    <span class="keyword">var</span> variableType = <span class="built_in">Object</span>.prototype.toString.call(variable);</div><div class="line"></div><div class="line">    <span class="comment">/* 查找以']'结尾的整词，将元数据转化为短字符串，具体有两种方法 */</span></div><div class="line">  </div><div class="line">    <span class="comment">// 1、正则表达式法，具体释义参照以下网址</span></div><div class="line">    <span class="comment">// https://regexper.com/#%2F%5Cb%5BA-z%5D%2B%5Cb(%3F%3D%5C%5D)%2Fg</span></div><div class="line">    variableType = variableType.match(<span class="regexp">/\b[A-z]+\b(?=\])/g</span>)[<span class="number">0</span>];</div><div class="line">    <span class="comment">// 2、字符串拆分法比较蠢，但是也在这里写下</span></div><div class="line">    <span class="comment">// variableType = variableType.split(' ').pop().split(']').shift();</span></div><div class="line"></div><div class="line">    <span class="comment">// 比较转为小写的类型字符串是否全等</span></div><div class="line">    <span class="keyword">return</span> expectedType.toLowerCase() === variableType.toLowerCase();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　用这个方法可以较为准确地判断变量的类型，包括原始值、引用值。</p>
 
       
 
@@ -423,15 +440,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">备忘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">备忘</a>
               </li>
              
               <li class="article-tag-list-item">
