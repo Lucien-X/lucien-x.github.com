@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lucien-x.github.io">
-  <title>原生JS实现JSONP | Lucien-X的个人博客</title>
+  <title>抛弃Vim! SSH也能用VSCode | Lucien-X的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前写JS哈希算法的时候，就说要把原生JSONP的代码贴进来，正好前几天阿里三面在线编码，考到了这个东西，不小心写成了异步加载JS并执行回调的逻辑了。现在把修正后的版本贴进来。 　　Talk is cheap, so I will show you the code.😆">
-<meta name="keywords" content="JavaScript,跨域">
+  <meta name="description" content="折腾的背景ssh登陆远程机器编辑文件的时候总是很痛苦,因为命令行编辑文件几乎只能用Vim. 然鹅:  今年已经2018年了 我习惯的编辑环境与Vim之间有代沟,降低效率不是一点点 VSCode大法吼啊!  本文将介绍,如何使用rmate配合VSCode的 Remote VSCode插件 通过”远程端口转发”（Remote Forwarding）,实现在VSCode IDE中编辑远程文件的功能">
+<meta name="keywords" content="终端,vscode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原生JS实现JSONP">
-<meta property="og:url" content="https://lucien-x.github.io/2017/10/23/原生JS实现JSONP/index.html">
+<meta property="og:title" content="抛弃Vim! SSH也能用VSCode">
+<meta property="og:url" content="https://lucien-x.github.io/2018/03/06/抛弃Vim-SSH也能用VSCode/index.html">
 <meta property="og:site_name" content="Lucien-X的个人博客">
-<meta property="og:description" content="之前写JS哈希算法的时候，就说要把原生JSONP的代码贴进来，正好前几天阿里三面在线编码，考到了这个东西，不小心写成了异步加载JS并执行回调的逻辑了。现在把修正后的版本贴进来。 　　Talk is cheap, so I will show you the code.😆">
-<meta property="og:image" content="https://lucien-x.github.io/2017/10/23/原生JS实现JSONP/JSONP.jpg">
-<meta property="og:updated_time" content="2017-10-23T03:32:48.000Z">
+<meta property="og:description" content="折腾的背景ssh登陆远程机器编辑文件的时候总是很痛苦,因为命令行编辑文件几乎只能用Vim. 然鹅:  今年已经2018年了 我习惯的编辑环境与Vim之间有代沟,降低效率不是一点点 VSCode大法吼啊!  本文将介绍,如何使用rmate配合VSCode的 Remote VSCode插件 通过”远程端口转发”（Remote Forwarding）,实现在VSCode IDE中编辑远程文件的功能">
+<meta property="og:image" content="https://lucien-x.github.io/2018/03/06/抛弃Vim-SSH也能用VSCode/Vim%20logo.png">
+<meta property="og:updated_time" content="2018-03-06T06:59:04.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原生JS实现JSONP">
-<meta name="twitter:description" content="之前写JS哈希算法的时候，就说要把原生JSONP的代码贴进来，正好前几天阿里三面在线编码，考到了这个东西，不小心写成了异步加载JS并执行回调的逻辑了。现在把修正后的版本贴进来。 　　Talk is cheap, so I will show you the code.😆">
-<meta name="twitter:image" content="https://lucien-x.github.io/2017/10/23/原生JS实现JSONP/JSONP.jpg">
+<meta name="twitter:title" content="抛弃Vim! SSH也能用VSCode">
+<meta name="twitter:description" content="折腾的背景ssh登陆远程机器编辑文件的时候总是很痛苦,因为命令行编辑文件几乎只能用Vim. 然鹅:  今年已经2018年了 我习惯的编辑环境与Vim之间有代沟,降低效率不是一点点 VSCode大法吼啊!  本文将介绍,如何使用rmate配合VSCode的 Remote VSCode插件 通过”远程端口转发”（Remote Forwarding）,实现在VSCode IDE中编辑远程文件的功能">
+<meta name="twitter:image" content="https://lucien-x.github.io/2018/03/06/抛弃Vim-SSH也能用VSCode/Vim%20logo.png">
   
     <link rel="alternative" href="/atom.xml" title="Lucien-X的个人博客" type="application/atom+xml">
   
@@ -150,32 +150,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-原生JS实现JSONP" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-抛弃Vim-SSH也能用VSCode" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      原生JS实现JSONP
+      抛弃Vim! SSH也能用VSCode
     </h1>
   
 
         
-        <a href="/2017/10/23/原生JS实现JSONP/" class="archive-article-date">
-  	<time datetime="2017-10-23T03:05:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-23</time>
+        <a href="/2018/03/06/抛弃Vim-SSH也能用VSCode/" class="archive-article-date">
+  	<time datetime="2018-03-06T06:39:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2017/10/23/原生JS实现JSONP/JSONP.jpg" alt="JSONP"></p>
-<p>　　之前写JS哈希算法的时候，就说要把原生JSONP的代码贴进来，正好前几天阿里三面在线编码，考到了这个东西，不小心写成了异步加载JS并执行回调的逻辑了。现在把修正后的版本贴进来。</p>
-<p>　　Talk is cheap, so I will show you the code.😆<br>　　<br>　　<a id="more"></a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 题目：原生代码实现jsonp函数， </span></div><div class="line"><span class="comment">// 带超时、 兼容性好： `jsonp(url,params,&#123;timeout,success,error,prefix&#125;)`</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonp</span>(<span class="params">url, params, options</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 该方法递归地将p拷贝进c中</span></div><div class="line">    <span class="keyword">var</span> extend = <span class="function"><span class="keyword">function</span>(<span class="params">p, c</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> c = c || &#123;&#125;;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> p[i] === <span class="string">'object'</span> &amp;&amp; !!p[i]) &#123;</div><div class="line">                c[i] = (p[i].constructor === <span class="built_in">Array</span>) ? [] : &#123;&#125;;</div><div class="line">                extend(p[i], c[i]);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                c[i] = p[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> c;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 该方法将对象转换成URL查询参数</span></div><div class="line">    <span class="keyword">var</span> encodeObjectToQueryString = <span class="function"><span class="keyword">function</span>(<span class="params">param, key</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> paramStr = <span class="string">''</span>;</div><div class="line">        <span class="keyword">var</span> separator = <span class="string">'&amp;'</span>;</div><div class="line">        <span class="keyword">var</span> mappingOperator = <span class="string">'='</span>;</div><div class="line">        <span class="keyword">if</span> (param <span class="keyword">instanceof</span> <span class="built_in">String</span> || <span class="keyword">typeof</span>(param) == <span class="string">'string'</span> || param <span class="keyword">instanceof</span> <span class="built_in">Number</span> || <span class="keyword">typeof</span>(param) == <span class="string">'number'</span> || param <span class="keyword">instanceof</span> <span class="built_in">Boolean</span> || <span class="keyword">typeof</span>(param) == <span class="string">'boolean'</span>) &#123;</div><div class="line">            paramStr += separator + key + mappingOperator + <span class="built_in">encodeURIComponent</span>(param);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> param) &#123;</div><div class="line">                <span class="keyword">var</span> value = param[i];</div><div class="line">                <span class="keyword">var</span> k = key == <span class="literal">null</span> ? i : key + (param <span class="keyword">instanceof</span> <span class="built_in">Array</span> ? <span class="string">'['</span> + i + <span class="string">']'</span> : <span class="string">'.'</span> + i);</div><div class="line">                paramStr += separator + encodeObjectToQueryString(value, k);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> paramStr.substr(<span class="number">1</span>);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 定义参数默认值</span></div><div class="line">    <span class="keyword">var</span> defaultOptions = &#123;</div><div class="line">        <span class="attr">timeout</span>: <span class="number">0</span>,</div><div class="line">        <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">        <span class="attr">error</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">        <span class="attr">prefix</span>: <span class="string">'callback'</span></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">// 调用方法拷贝默认值</span></div><div class="line">    options = extend(options, defaultOptions);</div><div class="line"></div><div class="line">    <span class="comment">// 定义定时器timer</span></div><div class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</div><div class="line">    <span class="comment">// 定义callback函数名，这里加了随机数后缀防止重复</span></div><div class="line">    <span class="keyword">var</span> callbackName = <span class="string">'jsonpCallback_'</span> + <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">2147483648</span>).toString(<span class="number">36</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 实例化 script DOM对象</span></div><div class="line">    <span class="keyword">var</span> cdjs = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">    cdjs.type = <span class="string">'text/javascript'</span>;</div><div class="line">    cdjs.src = url + <span class="string">'?'</span> + encodeObjectToQueryString(params) + <span class="string">'&amp;'</span> + options.prefix + <span class="string">'='</span> + callbackName;</div><div class="line"></div><div class="line">    <span class="comment">// 创建jsonp失败回调</span></div><div class="line">    <span class="keyword">if</span> (options.timeout !== <span class="number">0</span>) &#123;</div><div class="line">        <span class="comment">// 设置定时器</span></div><div class="line">        timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="comment">// 调用失败回调</span></div><div class="line">            options.error &amp;&amp; options.error(url,params,options);</div><div class="line">            <span class="comment">// 一些清理工作</span></div><div class="line">            <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].removeChild(cdjs);</div><div class="line">            <span class="built_in">window</span>[callbackName] = <span class="literal">null</span>;</div><div class="line">        &#125;, options.timeout);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 创建jsonp成功回调</span></div><div class="line">    <span class="built_in">window</span>[callbackName] = <span class="function"><span class="keyword">function</span>(<span class="params">resp</span>) </span>&#123;</div><div class="line">        <span class="comment">// 停止定时器</span></div><div class="line">        clearTimeout(timer);</div><div class="line">        <span class="comment">// 调用成功回调</span></div><div class="line">        options.success &amp;&amp; options.success(resp);</div><div class="line">        <span class="comment">// 一些清理工作</span></div><div class="line">        <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].removeChild(cdjs);</div><div class="line">        <span class="built_in">window</span>[callbackName] = <span class="literal">null</span>;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 追加元素，触发请求</span></div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(cdjs);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>下面是一个测试用例，用了百度的老搜索接口：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">jsonp(<span class="string">'http://suggestion.baidu.com/su'</span>, &#123;</div><div class="line">    <span class="attr">wd</span>: <span class="string">'Alibaba'</span>,</div><div class="line">    <span class="attr">someObject</span>: &#123; <span class="attr">key</span>: <span class="string">'value'</span>, <span class="attr">subObject</span>: &#123; <span class="attr">arrayInObj</span>: [<span class="number">1</span>, <span class="number">2</span>] &#125; &#125;,</div><div class="line">    <span class="attr">someBoolean</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">someArray</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">&#125;, &#123;</div><div class="line">    <span class="attr">prefix</span>: <span class="string">'cb'</span>,</div><div class="line">    <span class="attr">timeout</span>: <span class="number">2000</span>,</div><div class="line">    <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">resp</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(resp);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">error</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'JSONP timeout.'</span>);</div><div class="line">        <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+        <p><img src="/2018/03/06/抛弃Vim-SSH也能用VSCode/Vim logo.png" alt="Vim logo"></p>
+<h2 id="折腾的背景"><a href="#折腾的背景" class="headerlink" title="折腾的背景"></a>折腾的背景</h2><p>ssh登陆远程机器编辑文件的时候总是很痛苦,因为命令行编辑文件几乎只能用Vim.</p>
+<p>然鹅:</p>
+<ul>
+<li>今年已经2018年了</li>
+<li>我习惯的编辑环境与Vim之间有代沟,降低效率不是一点点</li>
+<li>VSCode大法吼啊!</li>
+</ul>
+<p>本文将介绍,如何使用rmate配合VSCode的 Remote VSCode插件</p>
+<p>通过”远程端口转发”（Remote Forwarding）,实现在VSCode IDE中编辑远程文件的功能</p>
+<a id="more"></a>
+<h2 id="折腾的过程"><a href="#折腾的过程" class="headerlink" title="折腾的过程"></a>折腾的过程</h2><h3 id="远程机器安装rmate"><a href="#远程机器安装rmate" class="headerlink" title="远程机器安装rmate"></a>远程机器安装rmate</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ssh 登陆远程机器</span></div><div class="line">ssh remoteUserName@xxx.xxx.xxx.xxx</div><div class="line"><span class="comment"># wget下载python版本rmate软件包,可能需要加 --no-check-certificate 参数</span></div><div class="line">wget https://raw.githubusercontent.com/sclukey/rmate-python/master/bin/rmate</div><div class="line"><span class="comment"># 修改文件读写权限</span></div><div class="line">chmod +x ./rmate</div><div class="line"><span class="comment"># 将软件拷贝进bin目录,将rmate安装到远程机器</span></div><div class="line">mv ./rmate /usr/<span class="built_in">local</span>/bin/rmate</div></pre></td></tr></table></figure>
+<h3 id="本地机器安装并配置Remote-VSCode"><a href="#本地机器安装并配置Remote-VSCode" class="headerlink" title="本地机器安装并配置Remote VSCode"></a>本地机器安装并配置Remote VSCode</h3><p>VSCode安装<a href="https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode" target="_blank" rel="external">Remote VSCode</a>插件后,启动服务</p>
+<ul>
+<li><p>可以 ⌘+ Shift + P, 输入 &gt;Remote:Start Server,启动插件服务器,监听本地端口.这样的话你每次使用都要启动下,有点麻烦</p>
+</li>
+<li><p>也可以在 首选项 =&gt; 设置 中设置 “remote.onstartup”: true, 一劳永逸.</p>
+</li>
+</ul>
+<h3 id="ssh登陆到远程机器-编辑文件"><a href="#ssh登陆到远程机器-编辑文件" class="headerlink" title="ssh登陆到远程机器,编辑文件"></a>ssh登陆到远程机器,编辑文件</h3><p>在VSCode中 Ctrl+` 启动集成终端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ssh登陆远程机器并转发到本地端口,格式为:</span></div><div class="line"><span class="comment"># ssh -R 远程主机端口:目标主机IP:目标主机端口 用户名@远程主机IP</span></div><div class="line">ssh -R 52698:127.0.0.1:52698 remoteUserName@xxx.xxx.xxx.xxx</div><div class="line"><span class="comment"># 新建文件或cd到工作路径</span></div><div class="line">touch README.md</div><div class="line"><span class="comment"># 将文件通过rmate转发到端口,调起Remote VSCode的服务,开始医科赛艇的可视化编辑之旅</span></div><div class="line">rmate -p 52698 README.md</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Bye Vim! And hello VSCode!</p>
+</blockquote>
 
       
 
@@ -220,11 +238,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">终端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">跨域</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vscode</a>
         		</li>
       		
 		</ul>
@@ -280,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://lucien-x.github.io/2017/10/23/原生JS实现JSONP/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://lucien-x.github.io/2018/03/06/抛弃Vim-SSH也能用VSCode/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +312,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/03/JS变量类型检测最佳实践/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JS变量类型检测最佳实践
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/20/通过实例化img对象进行打点统计/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">通过实例化img对象进行打点统计</div>
+    <a href="/2017/11/03/JS变量类型检测最佳实践/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS变量类型检测最佳实践</div>
       <i class="icon-circle-right"></i>
     </a>
   

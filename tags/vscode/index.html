@@ -6,21 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lucien-x.github.io">
-  <title>原生JS实现JSONP | Lucien-X的个人博客</title>
+  <title>Tag: vscode | Lucien-X的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前写JS哈希算法的时候，就说要把原生JSONP的代码贴进来，正好前几天阿里三面在线编码，考到了这个东西，不小心写成了异步加载JS并执行回调的逻辑了。现在把修正后的版本贴进来。 　　Talk is cheap, so I will show you the code.😆">
-<meta name="keywords" content="JavaScript,跨域">
-<meta property="og:type" content="article">
-<meta property="og:title" content="原生JS实现JSONP">
-<meta property="og:url" content="https://lucien-x.github.io/2017/10/23/原生JS实现JSONP/index.html">
+  <meta name="description" content="这里是Lucien-X的个人博客，涉及前端技术和一些闲聊，欢迎您有事没事上来嘚啵。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lucien-X的个人博客">
+<meta property="og:url" content="https://lucien-x.github.io/tags/vscode/index.html">
 <meta property="og:site_name" content="Lucien-X的个人博客">
-<meta property="og:description" content="之前写JS哈希算法的时候，就说要把原生JSONP的代码贴进来，正好前几天阿里三面在线编码，考到了这个东西，不小心写成了异步加载JS并执行回调的逻辑了。现在把修正后的版本贴进来。 　　Talk is cheap, so I will show you the code.😆">
-<meta property="og:image" content="https://lucien-x.github.io/2017/10/23/原生JS实现JSONP/JSONP.jpg">
-<meta property="og:updated_time" content="2017-10-23T03:32:48.000Z">
+<meta property="og:description" content="这里是Lucien-X的个人博客，涉及前端技术和一些闲聊，欢迎您有事没事上来嘚啵。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原生JS实现JSONP">
-<meta name="twitter:description" content="之前写JS哈希算法的时候，就说要把原生JSONP的代码贴进来，正好前几天阿里三面在线编码，考到了这个东西，不小心写成了异步加载JS并执行回调的逻辑了。现在把修正后的版本贴进来。 　　Talk is cheap, so I will show you the code.😆">
-<meta name="twitter:image" content="https://lucien-x.github.io/2017/10/23/原生JS实现JSONP/JSONP.jpg">
+<meta name="twitter:title" content="Lucien-X的个人博客">
+<meta name="twitter:description" content="这里是Lucien-X的个人博客，涉及前端技术和一些闲聊，欢迎您有事没事上来嘚啵。">
   
     <link rel="alternative" href="/atom.xml" title="Lucien-X的个人博客" type="application/atom+xml">
   
@@ -150,178 +146,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-原生JS实现JSONP" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      原生JS实现JSONP
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/03/06/抛弃Vim-SSH也能用VSCode/" class="archive-article-date">
+  	<time datetime="2018-03-06T06:39:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/03/06/抛弃Vim-SSH也能用VSCode/">抛弃Vim! SSH也能用VSCode</a>
     </h1>
   
 
-        
-        <a href="/2017/10/23/原生JS实现JSONP/" class="archive-article-date">
-  	<time datetime="2017-10-23T03:05:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2017/10/23/原生JS实现JSONP/JSONP.jpg" alt="JSONP"></p>
-<p>　　之前写JS哈希算法的时候，就说要把原生JSONP的代码贴进来，正好前几天阿里三面在线编码，考到了这个东西，不小心写成了异步加载JS并执行回调的逻辑了。现在把修正后的版本贴进来。</p>
-<p>　　Talk is cheap, so I will show you the code.😆<br>　　<br>　　<a id="more"></a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 题目：原生代码实现jsonp函数， </span></div><div class="line"><span class="comment">// 带超时、 兼容性好： `jsonp(url,params,&#123;timeout,success,error,prefix&#125;)`</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonp</span>(<span class="params">url, params, options</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 该方法递归地将p拷贝进c中</span></div><div class="line">    <span class="keyword">var</span> extend = <span class="function"><span class="keyword">function</span>(<span class="params">p, c</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> c = c || &#123;&#125;;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> p[i] === <span class="string">'object'</span> &amp;&amp; !!p[i]) &#123;</div><div class="line">                c[i] = (p[i].constructor === <span class="built_in">Array</span>) ? [] : &#123;&#125;;</div><div class="line">                extend(p[i], c[i]);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                c[i] = p[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> c;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 该方法将对象转换成URL查询参数</span></div><div class="line">    <span class="keyword">var</span> encodeObjectToQueryString = <span class="function"><span class="keyword">function</span>(<span class="params">param, key</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> paramStr = <span class="string">''</span>;</div><div class="line">        <span class="keyword">var</span> separator = <span class="string">'&amp;'</span>;</div><div class="line">        <span class="keyword">var</span> mappingOperator = <span class="string">'='</span>;</div><div class="line">        <span class="keyword">if</span> (param <span class="keyword">instanceof</span> <span class="built_in">String</span> || <span class="keyword">typeof</span>(param) == <span class="string">'string'</span> || param <span class="keyword">instanceof</span> <span class="built_in">Number</span> || <span class="keyword">typeof</span>(param) == <span class="string">'number'</span> || param <span class="keyword">instanceof</span> <span class="built_in">Boolean</span> || <span class="keyword">typeof</span>(param) == <span class="string">'boolean'</span>) &#123;</div><div class="line">            paramStr += separator + key + mappingOperator + <span class="built_in">encodeURIComponent</span>(param);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> param) &#123;</div><div class="line">                <span class="keyword">var</span> value = param[i];</div><div class="line">                <span class="keyword">var</span> k = key == <span class="literal">null</span> ? i : key + (param <span class="keyword">instanceof</span> <span class="built_in">Array</span> ? <span class="string">'['</span> + i + <span class="string">']'</span> : <span class="string">'.'</span> + i);</div><div class="line">                paramStr += separator + encodeObjectToQueryString(value, k);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> paramStr.substr(<span class="number">1</span>);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 定义参数默认值</span></div><div class="line">    <span class="keyword">var</span> defaultOptions = &#123;</div><div class="line">        <span class="attr">timeout</span>: <span class="number">0</span>,</div><div class="line">        <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">        <span class="attr">error</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">        <span class="attr">prefix</span>: <span class="string">'callback'</span></div><div class="line">    &#125;;</div><div class="line">    <span class="comment">// 调用方法拷贝默认值</span></div><div class="line">    options = extend(options, defaultOptions);</div><div class="line"></div><div class="line">    <span class="comment">// 定义定时器timer</span></div><div class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</div><div class="line">    <span class="comment">// 定义callback函数名，这里加了随机数后缀防止重复</span></div><div class="line">    <span class="keyword">var</span> callbackName = <span class="string">'jsonpCallback_'</span> + <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">2147483648</span>).toString(<span class="number">36</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 实例化 script DOM对象</span></div><div class="line">    <span class="keyword">var</span> cdjs = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">    cdjs.type = <span class="string">'text/javascript'</span>;</div><div class="line">    cdjs.src = url + <span class="string">'?'</span> + encodeObjectToQueryString(params) + <span class="string">'&amp;'</span> + options.prefix + <span class="string">'='</span> + callbackName;</div><div class="line"></div><div class="line">    <span class="comment">// 创建jsonp失败回调</span></div><div class="line">    <span class="keyword">if</span> (options.timeout !== <span class="number">0</span>) &#123;</div><div class="line">        <span class="comment">// 设置定时器</span></div><div class="line">        timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="comment">// 调用失败回调</span></div><div class="line">            options.error &amp;&amp; options.error(url,params,options);</div><div class="line">            <span class="comment">// 一些清理工作</span></div><div class="line">            <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].removeChild(cdjs);</div><div class="line">            <span class="built_in">window</span>[callbackName] = <span class="literal">null</span>;</div><div class="line">        &#125;, options.timeout);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 创建jsonp成功回调</span></div><div class="line">    <span class="built_in">window</span>[callbackName] = <span class="function"><span class="keyword">function</span>(<span class="params">resp</span>) </span>&#123;</div><div class="line">        <span class="comment">// 停止定时器</span></div><div class="line">        clearTimeout(timer);</div><div class="line">        <span class="comment">// 调用成功回调</span></div><div class="line">        options.success &amp;&amp; options.success(resp);</div><div class="line">        <span class="comment">// 一些清理工作</span></div><div class="line">        <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].removeChild(cdjs);</div><div class="line">        <span class="built_in">window</span>[callbackName] = <span class="literal">null</span>;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 追加元素，触发请求</span></div><div class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(cdjs);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>下面是一个测试用例，用了百度的老搜索接口：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">jsonp(<span class="string">'http://suggestion.baidu.com/su'</span>, &#123;</div><div class="line">    <span class="attr">wd</span>: <span class="string">'Alibaba'</span>,</div><div class="line">    <span class="attr">someObject</span>: &#123; <span class="attr">key</span>: <span class="string">'value'</span>, <span class="attr">subObject</span>: &#123; <span class="attr">arrayInObj</span>: [<span class="number">1</span>, <span class="number">2</span>] &#125; &#125;,</div><div class="line">    <span class="attr">someBoolean</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">someArray</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">&#125;, &#123;</div><div class="line">    <span class="attr">prefix</span>: <span class="string">'cb'</span>,</div><div class="line">    <span class="attr">timeout</span>: <span class="number">2000</span>,</div><div class="line">    <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">resp</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(resp);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">error</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'JSONP timeout.'</span>);</div><div class="line">        <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡☕️<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/alipay.jpeg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/weixin.jpeg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">终端</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">跨域</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vscode</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://lucien-x.github.io/2017/10/23/原生JS实现JSONP/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/11/03/JS变量类型检测最佳实践/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JS变量类型检测最佳实践
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/08/20/通过实例化img对象进行打点统计/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">通过实例化img对象进行打点统计</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
+    
 
 
           </div>
@@ -344,9 +226,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
