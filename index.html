@@ -1,20 +1,68 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Lucien-X的个人博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="dns-prefetch" href="https://lucien-x.tech">
-  <link rel="preconnect" href="https://lucien-x.tech">
-  <link rel="prerender" href="https://lucien-x.tech">
-</head>
-<body>
-  <div>
-    正在重定向。。。
-  </div>
-  <script>
-    window.location.href = 'https://lucien-x.tech';
-  </script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Lucien-X的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="dns-prefetch" href="https://lucien-x.tech" />
+    <link rel="preconnect" href="https://lucien-x.tech" />
+    <link rel="prerender" href="https://lucien-x.tech" />
+    <meta http-equiv="Refresh" content="5;url=https://lucien-x.tech" />
+    <script src="hotcss.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #1d1f21;
+        font-size: 0.5rem;
+      }
+      .message-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 10rem;
+        width: 16rem;
+        margin-top: -5rem;
+        margin-left: -8rem;
+        text-align: center;
+        color: #fff;
+      }
+      .loader {
+        height: 6rem;
+      }
+      .link {
+        color: cyan;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="message-box">
+      <img class="loader" src="./hud_loader.svg" alt="loader" />
+      <p>对不起，我们已经搬家了</p>
+      <p>您将在 <span class="timeShow" id="timers">5</span> 秒内被重定向到新的地址</p>
+      <div style="margin-top:0.5rem;">
+        <p>如果超过 5 秒后您仍然看到本消息</p>
+        <p>请<a class="link" href="https://lucien-x.tech">点击此处</a></p>
+      </div>
+    </div>
+    <script>
+      window.onload = function() {
+        var i = 4;
+        var tim = document.getElementById('timers');
+        var timer = setInterval(function() {
+          if (i == -1) {
+            clearInterval(timer);
+          } else {
+            tim.innerHTML = i;
+            --i;
+          }
+        }, 1000);
+      };
+      // window.location.href = 'https://lucien-x.tech';
+    </script>
+  </body>
 </html>
